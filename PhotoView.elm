@@ -6,6 +6,30 @@ import Html.Events exposing (onClick)
 import Html.App exposing (beginnerProgram)
 import List exposing (repeat, map, append, reverse)
 
+-- Dummy Main --
+
+model : Model
+model =
+  Model examplePhoto "" True
+
+update : Msg -> Model -> Model
+update msg model =
+  case msg of
+    LikePhoto ->
+      model
+    SubmitComment newComment ->
+      { model | newComment = "" }
+    CloseModal ->
+      model
+
+main : Program Never
+main =
+  beginnerProgram
+    { model = model
+    , view = view
+    , update = update
+    }
+
 
 -- Model --
 
@@ -25,7 +49,7 @@ examplePhoto =
   , likesCount = 42
   , commentsCount = 69
   , comments = repeat 10 exampleComment
-  , url = "http://placekitten.com/200/300"
+  , url = "https://scontent-sea1-1.xx.fbcdn.net/v/t31.0-8/15723801_10211860090922881_8558090155929719618_o.jpg?oh=f48ecf6713e78b1667491897ff0dabad&oe=591F5C9F"
   }
 
 type alias Comment =
